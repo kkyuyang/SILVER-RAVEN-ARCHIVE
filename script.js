@@ -12,54 +12,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnStop = document.getElementById('btn-stop');
     const slider = document.getElementById('audio-slider');
 
-    // ★ 음악 재생을 실행하는 함수 (버튼 모양도 같이 바꿔줌)
-    const playMusic = () => {
-        audio.play().then(() => {
-            btnPlay.textContent = '⏸'; // 재생 성공 시 일시정지 아이콘으로 변경
-        }).catch((error) => {
-            console.log("자동 재생이 브라우저에 의해 차단되었습니다. 클릭을 기다립니다.");
-        });
-    };
-
-    // ★ 1. 페이지 접속 시 바로 자동 재생 시도
-    playMusic();
-
-    // ★ 2. 브라우저가 차단했을 경우, 화면 아무 곳이나 처음 클릭할 때 재생되도록 설정
-    document.body.addEventListener('click', () => {
-        if (audio.paused && audio.currentTime === 0) {
-            playMusic();
-        }
-    }, { once: true }); // once: true를 넣으면 이 이벤트는 딱 한 번만 실행됩니다.
-
-    // 3. 재생/일시정지 버튼 클릭 시
-    btnPlay.addEventListener('click', (e) => {
-        e.stopPropagation(); // 배경 클릭 이벤트와 겹치지 않게 방지
+    // 1. 재생/일시정지 버튼 클릭 시
+    btnPlay.addEventListener('click', () => {
         if (audio.paused) {
-            playMusic();
+            audio.play();
+            btnPlay.textContent = '⏸'; // 음악이 켜지면 일시정지 모양으로 변경
         } else {
             audio.pause();
-            btnPlay.textContent = '▶';
+            btnPlay.textContent = '▶'; // 멈추면 다시 재생 모양으로 변경
         }
     });
 
-    // 4. 정지 버튼 클릭 시
-    btnStop.addEventListener('click', (e) => {
-        e.stopPropagation();
+    // 2. 정지 버튼 클릭 시
+    btnStop.addEventListener('click', () => {
         audio.pause();
-        audio.currentTime = 0;
-        btnPlay.textContent = '▶';
-        slider.value = 0;
+        audio.currentTime = 0; // 음악을 맨 처음(0초)으로 되감기
+        btnPlay.textContent = '▶'; // 재생 버튼 모양 초기화
+        slider.value = 0; // 슬라이더 바 위치 초기화
     });
 
-    // 5. 슬라이더 바 자동 이동
+    // 3. 음악이 재생될 때 슬라이더 바가 자동으로 움직이게 하기
     audio.addEventListener('timeupdate', () => {
         if (audio.duration) {
+            // (현재 재생시간 / 전체 시간) * 100 = 퍼센트(%)
             const progress = (audio.currentTime / audio.duration) * 100;
             slider.value = progress;
         }
     });
 
-    // 6. 슬라이더 바 수동 조작
+    // 4. 슬라이더 바를 마우스로 잡고 끌어서 재생 위치 옮기기
     slider.addEventListener('input', () => {
         if (audio.duration) {
             const seekTime = (slider.value / 100) * audio.duration;
