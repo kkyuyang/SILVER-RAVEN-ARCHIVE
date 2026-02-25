@@ -169,15 +169,6 @@ body, html {
     border-bottom: 2px solid var(--win-light);
 }
 
-<div class="window-header">
-    <span>CD Player</span>
-    <div class="win-controls">
-        <button>_</button>
-        <button>□</button>
-        <button>X</button>
-    </div>
-</div>
-
 /* === 5. 메인 백지 영역 === */
 .main-paper {
     background: white;
