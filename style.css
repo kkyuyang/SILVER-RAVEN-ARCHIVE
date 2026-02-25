@@ -299,3 +299,51 @@ section { display: none; }
 #album-modal img { max-width: 85%; max-height: 85%; box-shadow: 5px 5px 20px rgba(0,0,0,0.5); cursor: pointer; border: 4px solid var(--win-light); }
 .search-btns button:active { border-style: inset; }
 .dolphin-img { width: 100px; position: relative; z-index: 1; }
+
+/* === 📱 모바일 및 작은 화면을 위한 반응형 스타일 === */
+/* 화면 너비가 768px 이하일 때 (태블릿, 모바일 등) 적용됩니다 */
+@media (max-width: 768px) {
+    
+    /* 1. 메인 종이 영역의 안쪽 여백을 줄여서 공간 확보 */
+    .main-paper {
+        padding: 20px; /* 기존 40px에서 20px로 줄임 */
+    }
+
+    /* 2. 테이블 구조를 깨고 각 요소를 블록(상자)처럼 만듭니다 */
+    .list-table, .list-table tbody, .list-table tr, .list-table td {
+        display: block; /* 중요! 옆으로 나열되지 않고 위아래로 쌓이게 함 */
+        width: 100%; /* 너비를 화면에 꽉 차게 설정 */
+        box-sizing: border-box; /* 테두리와 패딩을 너비에 포함시켜 계산 */
+    }
+
+    /* 3. 각 리뷰(행)마다 간격과 구분선을 추가합니다 */
+    .list-table tr {
+        margin-bottom: 25px; /* 리뷰 사이의 간격 */
+        border-bottom: 1px dotted #ccc; /* 점선으로 구분선 추가 */
+        padding-bottom: 15px;
+    }
+    /* 마지막 리뷰 아래에는 구분선을 없앱니다 */
+    .list-table tr:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    /* 4. 각 셀(칸)의 안쪽 여백을 조정합니다 */
+    .list-table td {
+        padding: 5px 0; /* 위아래로만 약간의 간격을 줌 */
+        text-align: left; /* 글자를 왼쪽 정렬 */
+    }
+
+    /* 5. 작성자(ID) 칸의 스타일을 변경합니다 */
+    .list-table .col-id {
+        width: auto; /* 기존의 고정 너비(150px)를 해제합니다 */
+        font-weight: bold; /* 글씨를 굵게 */
+        color: var(--ie-blue); /* 파란색으로 강조 (선택사항) */
+        margin-bottom: 5px; /* 내용과 약간의 간격을 띄움 */
+    }
+
+    /* (선택사항) 타이틀 글자 크기도 조금 줄여서 균형을 맞춥니다 */
+    .title-section h1 {
+        font-size: 32px; /* 기존 48px에서 줄임 */
+    }
+}
