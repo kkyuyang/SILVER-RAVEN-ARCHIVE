@@ -43,14 +43,25 @@ body, html {
     font-size: 14px;
 }
 
-.ie-title-bar .ie-buttons button, .win-controls button {
+.ie-title-bar .ie-buttons button, 
+.win-controls button {
+    width: 16px;  /* 가로 고정 */
+    height: 14px; /* 세로 고정 */
     background: var(--win-bg);
     border: 1px solid var(--win-light);
     border-right-color: var(--win-dark);
     border-bottom-color: var(--win-dark);
     font-size: 10px;
+    font-family: 'Tahoma', sans-serif; 
     margin-left: 2px;
     cursor: pointer;
+    
+    /* 기호(_, □, X)를 버튼 정중앙에 배치 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
 }
 
 .ie-toolbar { font-size: 12px; padding: 5px; border-bottom: 1px solid var(--win-shadow); }
@@ -157,6 +168,15 @@ body, html {
     border-right: 2px solid var(--win-light);
     border-bottom: 2px solid var(--win-light);
 }
+
+<div class="window-header">
+    <span>CD Player</span>
+    <div class="win-controls">
+        <button>_</button>
+        <button>□</button>
+        <button>X</button>
+    </div>
+</div>
 
 /* === 5. 메인 백지 영역 === */
 .main-paper {
