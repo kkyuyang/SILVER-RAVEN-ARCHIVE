@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="ie-browser">
+        <div class="ie-top-bar">
+            <div class="ie-title-bar">
+                <span class="ie-title">Microsoft Internet Explorer</span>
+                <div class="ie-buttons">
+                    <button>_</button><button>ㅁ</button><button>X</button>
+                </div>
+            </div>
+            <div class="ie-toolbar">
+                <span>File(F) Edit(E) View(V) Favorites(A) Tools(T) Help(H)</span>
+            </div>
+            <div class="ie-address-bar">
+                <span>Address</span>
+                <input type="text" value="https://www.retro-website.com" readonly>
+            </div>
+        </div>
+
+        <div class="ie-viewport">
+            
+            <div id="cd-player" class="retro-window draggable">
+                <div class="window-header" id="cd-player-header">
+                    <span>💿 CD Player</span>
+                    <div class="win-controls">
+                        <button>_</button><button>ㅁ</button><button>X</button>
+                    </div>
+                </div>
+                <div class="window-content cd-content">
+                    <div class="cd-black-screen">
+                        <img src="images/cd_cover.jpg" alt="CD 커버" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'">
+                    </div>
+                    <div class="cd-info-controls">
+                        <div class="cd-row">
+                            <label>Artist:</label>
+                            <select class="retro-inset"><option>Kimiko Kasai</option></select>
+                        </div>
+                        <div class="cd-row">
+                            <label>Track:</label>
+                            <select class="retro-inset"><option>Very Special Moment</option></select>
+                        </div>
+                        <div class="cd-playback">
+                            <input type="range" min="0" max="100" value="30" class="slider">
+                            <div class="play-buttons">
+                                <button>◀◀</button><button>▶▶</button><button>▶</button><button>■</button><button>⏏</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout-container">
+                
+                <div class="top-banner box-shadow-effect">
+                    <img src="images/Banner.jpeg" alt="상단 배너">
+                </div>
+
+                <div class="content-wrapper">
+                    
+                    <div class="left-poster box-shadow-effect">
+                        <img src="images/Poster.jpg" alt="왼쪽 포스터">
+                    </div>
+
+                    <main class="main-paper box-shadow-effect">
+                        
+<div class="sd-icons">
+                            <img src="images/SD.png" alt="SD 캐릭터">
+                        </div>
+
+                        <nav class="retro-nav">
+                            <a href="#" onclick="showPage('game-info-page', event)" class="active">[게임 정보]</a> | 
+                            <a href="#" onclick="showPage('profile-page', event)">[캐릭터 프로필]</a> | 
+                            <a href="#" onclick="showPage('album-page', event)">[CG 앨범]</a>
+                        </nav>
+                        <hr class="retro-hr">
+
+                        <section id="game-info-page" class="fade-in" style="display: block;">
+                            <div class="title-section">
+                                <h1>ニャンコ <span class="sub-title">(1999)</span></h1>
+                                <div class="tag-bar">
+                                    <strong>[장르태그(추가)]</strong> 공포, 스릴러, 추격 
+                                    <strong>[추가됨]</strong> 1999/12/31 
+                                    <strong>[플랫폼]</strong> 윈도우
+                                </div>
+                            </div>
+
+                            <div class="desc-section">
+                                <p>한 일본 시골 마을 뒤쪽에 외로가 위치한 한 종합병원.<br>
+                                밤마다 노래나 이상한 웃음이 들린다는 소문 때문에 아무도 발을 밟지 않는다.<br>
+                                하지만 본래 타지에서 거주했던 주인공이자 플레이어인 당신은 그 사실을 전혀 모른다.<br>
+                                결국, 실금 진단을 위해 그 레전드 병원을 방문하게 되고,<br>
+                                — 레전드 사건을 경험하게 되는데…?</p>
+                            </div>
+
+                            <div class="more-link">
+                                <hr><a href="#">모든 소개 보기</a>
+                            </div>
+
+                            <div class="extra-info">
+                                <h3><i><u>레전드 병원에서 벌어지는 레전드 사건! 지금 레전드로 할인 된 가격에 만나보다!</u></i></h3>
+                            </div>
+
+                            <div class="rating-section">
+                                <div class="rating-header">
+                                    <span>추억을 평가하다.</span> <span class="stars">★★★★★</span> <span class="score">(5.0/5.0)</span>
+                                </div>
+                                <div class="rating-login">
+                                    <a href="#">로그인 후 추억 남기기 👤</a>
+                                </div>
+                            </div>
+                            <hr class="bold-hr">
+
+                            <table class="list-table">
+                                <tr><td class="col-id">햄스터 궁둥이가 둥그런이유</td><td>그래서 그 이벤트가 대체 뭔가요</td></tr>
+                                <tr><td class="col-id">동생사랑협회</td><td>응원합니다 지지 합니다!!</td></tr>
+                            </table>
+                        </section>
+
+                        <section id="profile-page" class="fade-in" style="display: none;">
+                            <div class="profile-layout">
+                                <div class="profile-img retro-inset">
+                                    <img src="images/Character.png" alt="캐릭터 스탠딩" style="width: 100%;">
+                                </div>
+                                
+                                <div class="profile-info">
+                                    <h2 class="profile-name">쿠로사키 렌 (黒崎 蓮)</h2>
+                                    <p class="profile-sub">>> 츠키카게 오현자 제5위</p>
+
+                                    <table class="retro-table">
+                                        <tr><td class="label">나이</td><td>20세</td></tr>
+                                        <tr><td class="label">신장</td><td>168cm</td></tr>
+                                        <tr><td class="label">무기</td><td>모노필라멘트 와이어, 커스텀 권총</td></tr>
+                                        <tr><td class="label">상태</td><td>과부하 징후 상시 관찰 필요</td></tr>
+                                        <tr><td class="label">특이사항</td><td>고스 메이크업 손상 시 심리적 무방비 상태 진입.</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="album-page" class="fade-in" style="display: none;">
+                            <h3 style="font-size: 1.5rem; color: var(--ie-blue); margin-bottom: 20px;">★ Special CG Album</h3>
+                            <div class="album-grid">
+                                <div class="album-item retro-window" onclick="openAlbum('images/CG_1.jpg')">
+                                    <div class="window-content" style="padding:5px;">
+                                        <img src="images/CG_1.jpg" alt="CG 01" onerror="this.src='https://via.placeholder.com/150x120?text=No+Image'">
+                                    </div>
+                                    <div class="window-footer" style="font-size:0.8rem; text-align:center; padding-bottom:5px;">Mission 01</div>
+                                </div>
+                                <div class="album-item retro-window" onclick="openAlbum('images/CG_2.jpg')">
+                                  <div class="window-content" style="padding:5px;">
+                                        <img src="images/CG_2.jpg" alt="CG 02" onerror="this.src='https://via.placeholder.com/150x120?text=No+Image'">
+                                    </div>
+                                    <div class="window-footer" style="font-size:0.8rem; text-align:center; padding-bottom:5px;">Mission 02</div>
+                                </div>
+                                <div class="album-item retro-window"><div class="window-content locked-cg">LOCKED</div></div>
+                                <div class="album-item retro-window"><div class="window-content locked-cg">LOCKED</div></div>
+                                <div class="album-item retro-window"><div class="window-content locked-cg">LOCKED</div></div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+
+            <div id="dolphin-helper">
+                <div class="speech-bubble retro-window">
+                    <div class="window-content search-box">
+                        <p>何について調べますか？</p>
+                        <input type="text" class="retro-inset" placeholder="お前を消す方法">
+                        <div class="search-btns">
+                            <button class="btn-option">オプション(O)</button>
+                            <button class="btn-search">検索(S)</button>
+                        </div>
+                    </div>
+                </div>
+                <img src="https://media.tenor.com/2Xy3KxXGz88AAAAi/dolphin-windows.gif" alt="돌고래" class="dolphin-img">
+            </div>
+
+            <div style="height: 100px;"></div>
+
+        </div>
+        
+        <div class="ie-bottom-bar">
+            <span>Done</span>
+            <span>Internet 커미션 @E10wwF</span>
+        </div>
+    </div>
+    <div id="album-modal" onclick="closeAlbum()">
+                <img id="modal-img" src="" class="retro-window">
+            </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
