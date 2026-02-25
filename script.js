@@ -6,6 +6,48 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
     let offsetX, offsetY;
 
+    // === 🎵 오디오 플레이어 기능 🎵 ===
+    const audio = document.getElementById('bgm-audio');
+    const btnPlay = document.getElementById('btn-play');
+    const btnStop = document.getElementById('btn-stop');
+    const slider = document.getElementById('audio-slider');
+
+    // 1. 재생/일시정지 버튼 클릭 시
+    btnPlay.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            btnPlay.textContent = '⏸'; // 음악이 켜지면 일시정지 모양으로 변경
+        } else {
+            audio.pause();
+            btnPlay.textContent = '▶'; // 멈추면 다시 재생 모양으로 변경
+        }
+    });
+
+    // 2. 정지 버튼 클릭 시
+    btnStop.addEventListener('click', () => {
+        audio.pause();
+        audio.currentTime = 0; // 음악을 맨 처음(0초)으로 되감기
+        btnPlay.textContent = '▶'; // 재생 버튼 모양 초기화
+        slider.value = 0; // 슬라이더 바 위치 초기화
+    });
+
+    // 3. 음악이 재생될 때 슬라이더 바가 자동으로 움직이게 하기
+    audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+            // (현재 재생시간 / 전체 시간) * 100 = 퍼센트(%)
+            const progress = (audio.currentTime / audio.duration) * 100;
+            slider.value = progress;
+        }
+    });
+
+    // 4. 슬라이더 바를 마우스로 잡고 끌어서 재생 위치 옮기기
+    slider.addEventListener('input', () => {
+        if (audio.duration) {
+            const seekTime = (slider.value / 100) * audio.duration;
+            audio.currentTime = seekTime;
+        }
+    });
+    
     cdHeader.addEventListener('mousedown', (e) => {
         isDragging = true;
         // 마우스 클릭 위치와 요소의 좌상단 모서리 간의 차이 계산
