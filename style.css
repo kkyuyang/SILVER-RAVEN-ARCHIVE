@@ -43,7 +43,13 @@ body, html {
     font-size: 14px;
 }
 
-.ie-title-bar .ie-buttons button, .win-controls button {
+/* === 2. 가짜 IE 브라우저 프레임 버튼 수정 === */
+.ie-title-bar .ie-buttons button, 
+.win-controls button {
+    /* 크기를 16x14px로 고정 (중요!) */
+    width: 16px !important;
+    height: 14px !important;
+    
     background: var(--win-bg);
     border: 1px solid var(--win-light);
     border-right-color: var(--win-dark);
@@ -51,6 +57,21 @@ body, html {
     font-size: 10px;
     margin-left: 2px;
     cursor: pointer;
+
+    /* 기호(_, ㅁ, x)를 정중앙에 배치하는 마법의 3줄 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+}
+
+/* 버튼을 눌렀을 때 쏙 들어가는 디테일 추가 */
+.ie-title-bar .ie-buttons button:active, 
+.win-controls button:active {
+    border: 1px inset var(--win-dark);
+    padding-top: 1px;
+    padding-left: 1px;
 }
 
 .ie-toolbar { font-size: 12px; padding: 5px; border-bottom: 1px solid var(--win-shadow); }
