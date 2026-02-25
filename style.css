@@ -43,13 +43,7 @@ body, html {
     font-size: 14px;
 }
 
-/* === 2. 가짜 IE 브라우저 프레임 버튼 수정 === */
-.ie-title-bar .ie-buttons button, 
-.win-controls button {
-    /* 크기를 16x14px로 고정 (중요!) */
-    width: 16px !important;
-    height: 14px !important;
-    
+.ie-title-bar .ie-buttons button, .win-controls button {
     background: var(--win-bg);
     border: 1px solid var(--win-light);
     border-right-color: var(--win-dark);
@@ -57,21 +51,6 @@ body, html {
     font-size: 10px;
     margin-left: 2px;
     cursor: pointer;
-
-    /* 기호(_, ㅁ, x)를 정중앙에 배치하는 마법의 3줄 */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-}
-
-/* 버튼을 눌렀을 때 쏙 들어가는 디테일 추가 */
-.ie-title-bar .ie-buttons button:active, 
-.win-controls button:active {
-    border: 1px inset var(--win-dark);
-    padding-top: 1px;
-    padding-left: 1px;
 }
 
 .ie-toolbar { font-size: 12px; padding: 5px; border-bottom: 1px solid var(--win-shadow); }
@@ -307,3 +286,35 @@ section { display: none; }
 #album-modal img { max-width: 85%; max-height: 85%; box-shadow: 5px 5px 20px rgba(0,0,0,0.5); cursor: pointer; border: 4px solid var(--win-light); }
 .search-btns button:active { border-style: inset; }
 .dolphin-img { width: 100px; position: relative; z-index: 1; }
+
+/* === 브라우저 및 모든 창의 상단 제어 버튼 크기 강제 통일 === */
+/* 브라우저 상단바 버튼 */
+.ie-title-bar button, 
+/* CD 플레이어를 포함한 모든 레트로 윈도우 창의 상단바 버튼 */
+.window-header button {
+    width: 16px !important;
+    height: 14px !important;
+    background: var(--win-bg) !important;
+    border: 1px solid var(--win-light) !important;
+    border-right-color: var(--win-dark) !important;
+    border-bottom-color: var(--win-dark) !important;
+    font-size: 10px !important;
+    font-family: 'Tahoma', sans-serif !important;
+    margin-left: 2px !important;
+    cursor: pointer !important;
+
+    /* 정중앙 정렬 (필수) */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+/* 버튼 눌렀을 때 효과 */
+.ie-title-bar button:active, 
+.window-header button:active {
+    border: 1px inset var(--win-dark) !important;
+    padding-top: 1px !important;
+    padding-left: 1px !important;
+}
