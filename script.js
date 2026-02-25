@@ -11,36 +11,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPlay = document.getElementById('btn-play');
     const btnStop = document.getElementById('btn-stop');
     const slider = document.getElementById('audio-slider');
+    
+    // 돌고래 말풍선 텍스트 요소 찾기
+    const dolphinText = document.querySelector('.search-box p');
+    const originalDolphinText = dolphinText.innerHTML; // 원래 대사(何について調べますか？) 저장
 
-    // 1. 재생/일시정지 버튼 클릭 시
-    btnPlay.addEventListener('click', () => {
+    // ★ 음악 재생을 실행하는 함수
+    const playMusic = () => {
+        audio.play().then(() => {
+            btnPlay.textContent = '⏸'; 
+            // 음악이 켜지면 돌고래 대사를 원래대로 되돌림
+            dolphinText.innerHTML = originalDolphinText; 
+        }).catch((error) => {
+            // 브라우저가 자동 재생을 막았을 때 돌고래가 안내함!
+            dolphinText.innerHTML = "화면 아무 곳이나<br>클릭하면 BGM이 나와요! 🎵";
+            dolphinText.style.color = "#000080"; // 글씨를 파란색으로 강조
+        });
+    };
+
+    // 1. 페이지 접속 시 바로 자동 재생 시도 (이전 페이지에서 넘어왔기 때문에 켜질 수도 있음!)
+    playMusic();
+
+    // 2. 만약 차단되어서 돌고래가 안내 중일 때, 화면 아무 곳이나 클릭하면 음악 켜기
+    document.body.addEventListener('click', () => {
+        if (audio.paused && audio.currentTime === 0) {
+            playMusic();
+        }
+    }, { once: true });
+
+    // 3. 재생/일시정지 버튼 클릭 시
+    btnPlay.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (audio.paused) {
-            audio.play();
-            btnPlay.textContent = '⏸'; // 음악이 켜지면 일시정지 모양으로 변경
+            playMusic();
         } else {
             audio.pause();
-            btnPlay.textContent = '▶'; // 멈추면 다시 재생 모양으로 변경
+            btnPlay.textContent = '▶';
         }
     });
 
-    // 2. 정지 버튼 클릭 시
-    btnStop.addEventListener('click', () => {
+    // 4. 정지 버튼 클릭 시
+    btnStop.addEventListener('click', (e) => {
+        e.stopPropagation();
         audio.pause();
-        audio.currentTime = 0; // 음악을 맨 처음(0초)으로 되감기
-        btnPlay.textContent = '▶'; // 재생 버튼 모양 초기화
-        slider.value = 0; // 슬라이더 바 위치 초기화
+        audio.currentTime = 0;
+        btnPlay.textContent = '▶';
+        slider.value = 0;
     });
 
-    // 3. 음악이 재생될 때 슬라이더 바가 자동으로 움직이게 하기
+    // 5. 슬라이더 바 자동 이동
     audio.addEventListener('timeupdate', () => {
         if (audio.duration) {
-            // (현재 재생시간 / 전체 시간) * 100 = 퍼센트(%)
             const progress = (audio.currentTime / audio.duration) * 100;
             slider.value = progress;
         }
     });
 
-    // 4. 슬라이더 바를 마우스로 잡고 끌어서 재생 위치 옮기기
+    // 6. 슬라이더 바 수동 조작
     slider.addEventListener('input', () => {
         if (audio.duration) {
             const seekTime = (slider.value / 100) * audio.duration;
