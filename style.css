@@ -1,3 +1,4 @@
+html { font-size: 16px !important; }
 /* === 1. 기본 설정 === */
 :root {
     --win-bg: #c0c0c0;
