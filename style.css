@@ -1,0 +1,283 @@
+/* === 1. 기본 설정 === */
+:root {
+    --win-bg: #c0c0c0;
+    --win-light: #ffffff;
+    --win-shadow: #808080;
+    --win-dark: #000000;
+    --ie-blue: #000080;
+}
+
+body, html {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Gulim', '굴림', '돋움', sans-serif;
+    overflow: hidden;
+}
+
+/* === 2. 가짜 IE 브라우저 프레임 === */
+.ie-browser {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--win-bg);
+}
+
+.ie-top-bar {
+    background: var(--win-bg);
+    border-bottom: 2px solid var(--win-shadow);
+    padding: 2px;
+}
+
+.ie-title-bar {
+    background: linear-gradient(to right, var(--ie-blue), #1084d0);
+    color: white;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.ie-title-bar .ie-buttons button, .win-controls button {
+    background: var(--win-bg);
+    border: 1px solid var(--win-light);
+    border-right-color: var(--win-dark);
+    border-bottom-color: var(--win-dark);
+    font-size: 10px;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.ie-toolbar { font-size: 12px; padding: 5px; border-bottom: 1px solid var(--win-shadow); }
+.ie-address-bar { display: flex; align-items: center; padding: 5px; font-size: 12px; }
+.ie-address-bar input { flex-grow: 1; margin-left: 5px; border: 2px inset var(--win-shadow); padding: 2px; }
+
+.ie-bottom-bar {
+    background: var(--win-bg);
+    border-top: 2px solid var(--win-light);
+    padding: 3px 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* === 3. 메인 뷰포트 및 레이아웃 === */
+.ie-viewport {
+    flex-grow: 1;
+    position: relative;
+    overflow-y: auto;
+    background-color: #f2f2f2; 
+    background-image: radial-gradient(#d5d5d5 1px, transparent 0);
+    background-size: 4px 4px;
+    padding-top: 50px; /* 상단 여백 추가 */
+}
+
+/* 전체 레이아웃 컨테이너 (중앙 정렬 및 너비 제한) */
+.layout-container {
+    max-width: 1000px;
+    margin: 0 auto; /* 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 배너와 아래 콘텐츠 사이 간격 */
+}
+
+/* 공통 그림자 효과 (떠 있는 느낌) */
+.box-shadow-effect {
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* === 상단 배너 스타일 (수정됨) === */
+.top-banner {
+    width: 100%; /* 컨테이너 너비에 맞춤 */
+    height: 300px; /* 높이 고정 */
+    overflow: hidden;
+    background: #fff; /* 이미지가 없을 때를 대비한 배경 */
+}
+.top-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+    object-position: center;
+}
+
+/* === 콘텐츠 래퍼 (왼쪽 포스터 + 하얀 종이) === */
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    /* 핵심! 자식 요소들의 높이를 동일하게 맞춥니다. */
+    align-items: stretch; 
+    position: relative;
+    z-index: 10;
+}
+
+/* === 왼쪽 포스터 스타일 (수정됨) === */
+.left-poster {
+    width: 280px; /* 포스터 가로 너비 설정 */
+    flex-shrink: 0; /* 너비가 줄어들지 않게 고정 */
+    background: #fff;
+    display: flex; /* 이미지를 꽉 채우기 위해 flex 사용 */
+}
+.left-poster img {
+    width: 100%;
+    height: 100%; /* 부모 높이만큼 늘어남 */
+    object-fit: cover; /* 비율 유지하며 잘라서 채우기 */
+    display: block;
+}
+
+/* === 4. 레트로 윈도우 공통 스타일 === */
+.retro-window {
+    background: var(--win-bg);
+    border-top: 2px solid var(--win-light);
+    border-left: 2px solid var(--win-light);
+    border-right: 2px solid var(--win-dark);
+    border-bottom: 2px solid var(--win-dark);
+    box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px var(--win-shadow);
+}
+
+.window-header {
+    background: var(--ie-blue);
+    color: white;
+    padding: 2px 4px;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    cursor: grab;
+}
+
+.retro-inset {
+    background: #ffffff;
+    border-top: 2px solid var(--win-shadow);
+    border-left: 2px solid var(--win-shadow);
+    border-right: 2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+}
+
+/* === 5. 메인 백지 영역 === */
+.main-paper {
+    background: white;
+    flex-grow: 1;
+    min-height: 600px;
+    margin: 0;
+    padding: 40px;
+    position: relative;
+}
+
+/* === SD 캐릭터 스타일 === */
+.sd-icons {
+    position: absolute;
+    top: -65px;
+    right: 20px;
+    width: 150px;
+    z-index: 20;
+}
+.sd-icons img {
+    width: 100%;
+}
+
+/* 타이틀 및 텍스트 */
+.title-section h1 { font-size: 48px; margin: 0 0 10px 0; letter-spacing: -2px; }
+.title-section .sub-title { font-size: 18px; color: #666; font-weight: normal; }
+
+.tag-bar {
+    background: #e9e9e9;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.desc-section { font-size: 14px; line-height: 1.6; margin-bottom: 40px; }
+
+.more-link { text-align: right; font-size: 12px; position: relative; margin-bottom: 40px; }
+.more-link hr { border: 0; border-top: 1px solid #ddd; position: absolute; width: 70%; left: 0; top: 50%; margin: 0; }
+.more-link a { color: black; text-decoration: none; padding-left: 10px; background: white; position: relative; z-index: 1;}
+
+.extra-info h3 { font-size: 16px; margin-bottom: 30px; }
+
+/* 평가 및 리스트 */
+.rating-section { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px; }
+.rating-header { font-size: 18px; }
+.rating-header .stars { color: gold; text-shadow: 1px 1px 0 #000; }
+.rating-header .score { font-size: 12px; color: #666; }
+.rating-login a { font-size: 12px; color: black; text-decoration: none; }
+.bold-hr { border: 0; border-top: 2px solid black; margin-bottom: 20px; }
+
+.list-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.list-table td { padding: 15px 5px; }
+.list-table .col-id { width: 150px; font-weight: bold; }
+
+/* === 6. CD 플레이어 === */
+#cd-player {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 320px;
+    z-index: 1000;
+}
+.cd-content { display: flex; gap: 10px; padding: 10px; background: var(--win-bg); }
+.cd-black-screen { width: 80px; height: 80px; background: black; border: 2px inset var(--win-shadow); overflow: hidden; }
+.cd-info-controls { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
+.cd-row { display: flex; align-items: center; margin-bottom: 5px; font-size: 12px;}
+.cd-row label { width: 40px; }
+.cd-row select { flex-grow: 1; padding: 2px; font-family: 'Gulim'; font-size: 12px;}
+.cd-playback { margin-top: 10px; }
+.slider { width: 100%; margin-bottom: 5px; }
+.play-buttons { display: flex; gap: 2px; }
+.play-buttons button { flex: 1; padding: 2px; background: var(--win-bg); border: 2px outset var(--win-light); font-size: 10px; cursor: pointer; }
+.play-buttons button:active { border-style: inset; }
+
+/* === 7. 돌고래 위젯 === */
+#dolphin-helper {
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.speech-bubble { background: #ffffe1; border-color: black; margin-bottom: -10px; position: relative; z-index: 2; }
+.speech-bubble .window-content { background: #ffffe1; padding: 15px; }
+.search-box p { margin: 0 0 10px 0; font-size: 14px; font-weight: bold; text-align: center; }
+.search-box input { width: 90%; margin-bottom: 10px; padding: 4px; box-sizing: border-box; }
+.search-btns { display: flex; gap: 5px; justify-content: center; }
+.search-btns button { font-size: 12px; padding: 2px 10px; background: var(--win-bg); border: 2px outset var(--win-light); cursor: pointer; }
+/* === 8. 네비게이션 & 탭 메뉴 === */
+.retro-nav { text-align: center; margin-bottom: 15px; font-size: 14px; font-weight: bold; }
+.retro-nav a { color: var(--win-dark); text-decoration: none; margin: 0 10px; padding: 3px 8px; border: 1px solid transparent; }
+.retro-nav a:hover, .retro-nav a.active { color: white; background-color: var(--ie-blue); border: 1px dotted var(--win-shadow); }
+.retro-hr { border: 0; border-top: 2px solid var(--win-shadow); border-bottom: 2px solid var(--win-light); margin-bottom: 30px; }
+
+/* 탭 전환 부드러운 애니메이션 */
+section { display: none; }
+.fade-in { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* === 9. 캐릭터 프로필 === */
+.profile-layout { display: flex; gap: 30px; align-items: flex-start; }
+.profile-img { width: 220px; flex-shrink: 0; background: #e5e5e5; padding: 5px; }
+.profile-info { flex-grow: 1; }
+.profile-name { font-size: 28px; color: var(--ie-blue); border-bottom: 2px solid var(--win-shadow); margin: 0 0 10px 0; padding-bottom: 5px; }
+.profile-sub { color: #666; font-weight: bold; margin-bottom: 20px; font-size: 14px; }
+
+.retro-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.retro-table td { padding: 12px 5px; border-bottom: 1px dotted var(--win-shadow); }
+.retro-table .label { font-weight: bold; color: var(--ie-blue); width: 80px; }
+
+/* === 10. CG 앨범 & 모달 === */
+.album-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+.album-item { cursor: pointer; transition: transform 0.2s; background: var(--win-bg); }
+.album-item:hover { transform: translateY(-3px); box-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+.album-item img { width: 100%; height: 120px; object-fit: cover; border: 2px inset var(--win-bg); display: block; }
+.locked-cg { height: 120px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--win-shadow); background: #d0d0d0; border: 2px inset var(--win-bg); margin: 5px; font-size: 14px; }
+
+#album-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); z-index: 3000;
+    justify-content: center; align-items: center;
+}
+#album-modal img { max-width: 85%; max-height: 85%; box-shadow: 5px 5px 20px rgba(0,0,0,0.5); cursor: pointer; border: 4px solid var(--win-light); }
+.search-btns button:active { border-style: inset; }
+.dolphin-img { width: 100px; position: relative; z-index: 1; }
