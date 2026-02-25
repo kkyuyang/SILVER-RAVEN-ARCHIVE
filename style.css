@@ -12,6 +12,7 @@ body, html {
     width: 100%; height: 100%;
     font-family: 'Gulim', '굴림', '돋움', sans-serif;
     overflow: hidden;
+    /* body에 있던 zoom: 0.8; 삭제! */
 }
 
 /* === 2. 가짜 IE 브라우저 프레임 === */
@@ -42,32 +43,14 @@ body, html {
     font-size: 14px;
 }
 
-/* === 수정됨: 상단바 버튼 크기 확대 === */
-.ie-title-bar .ie-buttons button {
-    width: 20px;  /* 너비를 16px에서 20px로 증가 */
-    height: 18px; /* 높이를 14px에서 18px로 증가 */
+.ie-title-bar .ie-buttons button, .win-controls button {
     background: var(--win-bg);
     border: 1px solid var(--win-light);
     border-right-color: var(--win-dark);
     border-bottom-color: var(--win-dark);
-    font-size: 11px; /* 글자 크기를 9px에서 11px로 증가 */
-    font-family: 'Tahoma', sans-serif;
+    font-size: 10px;
     margin-left: 2px;
     cursor: pointer;
-    
-    /* 정중앙 정렬 */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-}
-
-/* 버튼 눌렀을 때 효과 공통 적용 */
-.ie-buttons button:active, .play-buttons button:active {
-    border: 1px inset var(--win-dark);
-    padding-top: 1px;
-    padding-left: 1px;
 }
 
 .ie-toolbar { font-size: 12px; padding: 5px; border-bottom: 1px solid var(--win-shadow); }
@@ -75,6 +58,7 @@ body, html {
 .ie-address-bar input { flex-grow: 1; margin-left: 5px; border: 2px inset var(--win-shadow); padding: 2px; }
 
 .ie-bottom-bar {
+    /* 억지로 늘렸던 zoom 설정 삭제 (원상복구) */
     background: var(--win-bg);
     border-top: 2px solid var(--win-light);
     padding: 3px 10px;
@@ -165,30 +149,6 @@ body, html {
     justify-content: space-between;
     cursor: grab;
 }
-/* 윈도우 헤더 안의 버튼 스타일도 상단바와 동일하게 적용 */
-.window-header .win-controls button {
-    width: 18px; /* 상단바보다는 살짝 작게 */
-    height: 16px;
-    background: var(--win-bg);
-    border: 1px solid var(--win-light);
-    border-right-color: var(--win-dark);
-    border-bottom-color: var(--win-dark);
-    font-size: 10px;
-    font-family: 'Tahoma', sans-serif;
-    margin-left: 2px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-}
-.window-header .win-controls button:active {
-    border: 1px inset var(--win-dark);
-    padding-top: 1px;
-    padding-left: 1px;
-}
-
 
 .retro-inset {
     background: #ffffff;
@@ -268,24 +228,9 @@ body, html {
 .cd-row select { flex-grow: 1; padding: 2px; font-family: 'Gulim'; font-size: 12px;}
 .cd-playback { margin-top: 10px; }
 .slider { width: 100%; margin-bottom: 5px; }
-
-/* === 수정됨: CD 플레이어 버튼 원래대로 복구 === */
-.play-buttons {
-    display: flex;
-    gap: 2px; 
-    /* justify-content: flex-start; 제거 */
-}
-.play-buttons button {
-    flex: 1;         /* 원래대로 공간을 균등하게 나눠 갖도록 복구 */
-    /* width, height 강제 고정 삭제 */
-    padding: 2px;    /* 아이콘과 테두리 사이 간격 확보 */
-    background: var(--win-bg);
-    border: 2px outset var(--win-light);
-    font-size: 10px;
-    cursor: pointer;
-    /* display: flex 등 아이콘 정렬 속성 삭제 (기본값 사용) */
-}
-
+.play-buttons { display: flex; gap: 2px; }
+.play-buttons button { flex: 1; padding: 2px; background: var(--win-bg); border: 2px outset var(--win-light); font-size: 10px; cursor: pointer; }
+.play-buttons button:active { border-style: inset; }
 
 /* === 7. 돌고래 위젯 === */
 #dolphin-helper {
