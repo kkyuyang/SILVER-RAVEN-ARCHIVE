@@ -1,6 +1,3 @@
-body {
-  zoom: 0.8; /* 화면 전체 요소를 80% 비율로 강제 축소합니다 */
-}
 /* === 1. 기본 설정 === */
 :root {
     --win-bg: #c0c0c0;
@@ -12,16 +9,20 @@ body {
 
 body, html {
     margin: 0; padding: 0;
-    height: 100%;
+    width: 100%; height: 100%;
     font-family: 'Gulim', '굴림', '돋움', sans-serif;
     overflow: hidden;
+    /* body에 있던 zoom: 0.8; 삭제! */
 }
 
 /* === 2. 가짜 IE 브라우저 프레임 === */
 .ie-browser {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    width: 125vw;  /* 화면 너비를 125%로 늘림 */
+    height: 125vh; /* 화면 높이를 125%로 늘림 */
+    zoom: 0.8;     /* 늘린 화면을 80%로 축소하여 딱 맞춤 */
+    transform-origin: top left;
     background: var(--win-bg);
 }
 
@@ -57,9 +58,7 @@ body, html {
 .ie-address-bar input { flex-grow: 1; margin-left: 5px; border: 2px inset var(--win-shadow); padding: 2px; }
 
 .ie-bottom-bar {
-  zoom: 1.25;
-  width: 100%;
-  bottom: 0;
+    /* 억지로 늘렸던 zoom 설정 삭제 (원상복구) */
     background: var(--win-bg);
     border-top: 2px solid var(--win-light);
     padding: 3px 10px;
@@ -76,58 +75,57 @@ body, html {
     background-color: #f2f2f2; 
     background-image: radial-gradient(#d5d5d5 1px, transparent 0);
     background-size: 4px 4px;
-    padding-top: 50px; /* 상단 여백 추가 */
+    padding-top: 50px; 
 }
 
-/* 전체 레이아웃 컨테이너 (중앙 정렬 및 너비 제한) */
+/* 전체 레이아웃 컨테이너 */
 .layout-container {
     max-width: 1000px;
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* 배너와 아래 콘텐츠 사이 간격 */
+    gap: 20px; 
 }
 
-/* 공통 그림자 효과 (떠 있는 느낌) */
+/* 공통 그림자 효과 */
 .box-shadow-effect {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
 
-/* === 상단 배너 스타일 (수정됨) === */
+/* === 상단 배너 스타일 === */
 .top-banner {
-    width: 100%; /* 컨테이너 너비에 맞춤 */
-    height: 300px; /* 높이 고정 */
+    width: 100%;
+    height: 300px;
     overflow: hidden;
-    background: #fff; /* 이미지가 없을 때를 대비한 배경 */
+    background: #fff;
 }
 .top-banner img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+    object-fit: cover;
     object-position: center;
 }
 
-/* === 콘텐츠 래퍼 (왼쪽 포스터 + 하얀 종이) === */
+/* === 콘텐츠 래퍼 === */
 .content-wrapper {
     display: flex;
     gap: 20px;
-    /* 핵심! 자식 요소들의 높이를 동일하게 맞춥니다. */
     align-items: stretch; 
     position: relative;
     z-index: 10;
 }
 
-/* === 왼쪽 포스터 스타일 (수정됨) === */
+/* === 왼쪽 포스터 스타일 === */
 .left-poster {
-    width: 280px; /* 포스터 가로 너비 설정 */
-    flex-shrink: 0; /* 너비가 줄어들지 않게 고정 */
+    width: 280px;
+    flex-shrink: 0;
     background: #fff;
-    display: flex; /* 이미지를 꽉 채우기 위해 flex 사용 */
+    display: flex;
 }
 .left-poster img {
     width: 100%;
-    height: 100%; /* 부모 높이만큼 늘어남 */
-    object-fit: cover; /* 비율 유지하며 잘라서 채우기 */
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
@@ -250,6 +248,7 @@ body, html {
 .search-box input { width: 90%; margin-bottom: 10px; padding: 4px; box-sizing: border-box; }
 .search-btns { display: flex; gap: 5px; justify-content: center; }
 .search-btns button { font-size: 12px; padding: 2px 10px; background: var(--win-bg); border: 2px outset var(--win-light); cursor: pointer; }
+
 /* === 8. 네비게이션 & 탭 메뉴 === */
 .retro-nav { text-align: center; margin-bottom: 15px; font-size: 14px; font-weight: bold; }
 .retro-nav a { color: var(--win-dark); text-decoration: none; margin: 0 10px; padding: 3px 8px; border: 1px solid transparent; }
