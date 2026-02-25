@@ -1,8 +1,3 @@
-.container { /* 메인 박스나 전체를 감싸는 div */
-  transform: scale(0.8);
-  transform-origin: top center; /* 위쪽 중앙을 기준으로 줄임 */
-  width: 125%; /* 0.8로 줄어든 만큼 가로폭을 다시 보정 (1 / 0.8 = 1.25) */
-}
 /* === 1. 기본 설정 === */
 :root {
     --win-bg: #c0c0c0;
